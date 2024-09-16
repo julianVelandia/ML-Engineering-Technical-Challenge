@@ -21,3 +21,5 @@ INITIAL_METRICS_FILENAME = 'initial_metrics.json'
 MODEL_FILENAME = 'random_forest_model.joblib'
 
 REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
+
+EDA_FILE = os.path.join(REPORTS_DIR, 'eda_credit_card_clients.md')
