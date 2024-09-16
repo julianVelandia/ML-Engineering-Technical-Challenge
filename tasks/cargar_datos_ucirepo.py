@@ -25,5 +25,3 @@ def cargar_datos_ucirepo(dataset_id):
 
     X.to_csv(os.path.join(DATA_DIR, FEATURES_FILENAME), index=False)
     y.to_csv(os.path.join(DATA_DIR, TARGETS_FILENAME), index=False)
-
-    print(f"Datos del dataset {dataset_id} cargados y guardados en {DATA_DIR}.")
