@@ -20,6 +20,11 @@ orquestación y **RandomForest** como algoritmo principal de clasificación.
         - Al separar el pipeline de monitoreo, se garantiza que la monitorización y reentrenamiento del modelo ocurran
           sin interferir en las predicciones diarias de nuevos datos.
 
+El diseño propuesto es el siguiente:
+![design.png](design.png)
+
+
+
 2. **RandomForest como Algoritmo**
     - **Decisión**: Se utiliza **RandomForestClassifier** para entrenar el modelo de predicción.
     - **Justificación**:
