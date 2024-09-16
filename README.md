@@ -6,8 +6,6 @@ Utiliza **Airflow** para orquestar los pipelines y **Docker** para contenerizar 
 El modelo de machine learning es un **RandomForestClassifier** entrenado y ajustado utilizando [datos de clientes de tarjetas de crédito](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients).
 
 ![image](https://github.com/user-attachments/assets/2aa1caa9-32e2-44e7-835b-d4ccfc0a1bc4)
-![image](https://github.com/user-attachments/assets/2aa1caa9-32e2-44e7-835b-d4ccfc0a1bc4)
-
 
 ### Instalación y Configuración
 
