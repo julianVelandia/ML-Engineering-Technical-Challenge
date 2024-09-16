@@ -1,10 +1,13 @@
 import os
 import unittest
 from unittest.mock import patch, MagicMock
+
 import pandas as pd
-from tasks.generar_informes import generar_informes
+
 from config.constants import MODELS_DIR, DATA_DIR, REPORTS_DIR, CLEAN_FEATURES_FILENAME, CLEAN_TARGETS_FILENAME, \
     BEST_MODEL_FILENAME
+from tasks.generar_informes import generar_informes
+
 
 class TestGenerarInformes(unittest.TestCase):
 
@@ -18,10 +21,9 @@ class TestGenerarInformes(unittest.TestCase):
                 'col1': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 'col2': [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             }),
-            pd.DataFrame({'target': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]})  # Targets con más filas
+            pd.DataFrame({'target': [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]})
         ]
 
-        # Simulación del modelo y predicciones
         mock_best_model = MagicMock()
         mock_best_model.predict.return_value = [0, 1]
         mock_best_model.predict_proba.return_value = [[0.6, 0.4], [0.2, 0.8]]

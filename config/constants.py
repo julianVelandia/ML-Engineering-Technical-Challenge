@@ -23,3 +23,11 @@ MODEL_FILENAME = 'random_forest_model.joblib'
 REPORTS_DIR = os.path.join(BASE_DIR, 'reports')
 
 EDA_FILE = os.path.join(REPORTS_DIR, 'eda_credit_card_clients.md')
+
+RANDOM_FOREST_MODEL_FILENAME = 'random_forest_best_model.joblib'
+NUEVOS_DATOS_FILENAME = 'nuevos_datos_etiquetados.csv'
+DATOS_ANTERIORES_FILENAME = 'datos_anteriores_etiquetados.csv'
+
+CURRENT_METRICS_FILENAME = 'current_metrics.json'
+RETRAIN_FLAG_FILENAME = 'retrain_flag.txt'
+

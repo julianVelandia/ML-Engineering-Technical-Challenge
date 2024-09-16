@@ -4,7 +4,7 @@ from config.constants import DATA_DIR, FEATURES_FILENAME, TARGETS_FILENAME
 from ucimlrepo import fetch_ucirepo
 
 
-def cargar_datos_ucirepo(dataset_id):
+def cargar_datos_ucirepo(dataset_id: int):
     """
         Descarga los datos de un dataset específico desde UC Repository, los guarda en archivos CSV, y
         los almacena en el directorio de datos definido en las constantes.
