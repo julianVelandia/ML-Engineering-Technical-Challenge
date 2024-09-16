@@ -1,0 +1,52 @@
+version: '3'
+services:
+  airflow:
+    build: .
+    image: apache/airflow:2.5.1
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - PYTHONPATH=/opt/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./tasks:/opt/airflow/tasks
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./reports:/opt/airflow/dags/reports
+    ports:
+      - "8080:8080"
+    command: bash -c "
+      airflow db init &&
+      airflow users create \
+        --username admin \
+        --password admin \
+        --firstname Admin \
+        --lastname User \
+        --role Admin \
+        --email admin@example.com &&
+      airflow webserver & airflow scheduler"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      retries: 3
+      timeout: 10s
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+
+volumes:
+  postgres-db-volume:
