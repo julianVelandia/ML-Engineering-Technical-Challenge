@@ -2,6 +2,7 @@ import os
 
 import joblib
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, roc_curve, auc
@@ -13,15 +14,15 @@ from config.constants import MODELS_DIR, DATA_DIR, REPORTS_DIR, CLEAN_FEATURES_F
 
 def generar_informes():
     """
-        Genera informes de desempeño del modelo entrenado, incluyendo una matriz de confusión y la curva ROC,
-        y los guarda como imágenes en un directorio específico de reportes.
+    Genera informes de desempeño del modelo entrenado, incluyendo una matriz de confusión y la curva ROC,
+    y los guarda como imágenes en un directorio específico de reportes.
 
-        Proceso:
-            - Carga el modelo entrenado desde el archivo correspondiente.
-            - Carga los datos de características y objetivos.
-            - Realiza predicciones y calcula probabilidades.
-            - Genera una matriz de confusión y una curva ROC.
-            - Guarda las imágenes generadas en la carpeta de reportes.
+    Proceso:
+        - Carga el modelo entrenado desde el archivo correspondiente.
+        - Carga los datos de características y objetivos.
+        - Realiza predicciones y calcula probabilidades.
+        - Genera una matriz de confusión y una curva ROC.
+        - Guarda las imágenes generadas en la carpeta de reportes.
     """
     best_model = joblib.load(os.path.join(MODELS_DIR, BEST_MODEL_FILENAME))
 
@@ -31,11 +32,12 @@ def generar_informes():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     y_pred = best_model.predict(X_test)
-    y_prob = best_model.predict_proba(X_test)[:, 1]
+    y_prob = np.array(best_model.predict_proba(X_test))[:, 1]
 
     os.makedirs(REPORTS_DIR, exist_ok=True)
 
     cm = confusion_matrix(y_test, y_pred)
+
     plt.figure(figsize=(6, 4))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
     plt.title('Matriz de Confusión')
@@ -47,6 +49,7 @@ def generar_informes():
 
     fpr, tpr, thresholds = roc_curve(y_test, y_prob)
     roc_auc = auc(fpr, tpr)
+
     plt.figure(figsize=(6, 4))
     plt.plot(fpr, tpr, color='darkorange', lw=2, label='Curva ROC (AUC = %0.2f)' % roc_auc)
     plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
