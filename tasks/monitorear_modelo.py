@@ -31,12 +31,12 @@ def monitorear_modelo():
 
     if os.path.exists(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME)):
         datos = pd.read_csv(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME))
+        y_true = datos['target']
+        X_new = datos.drop('target', axis=1)
     else:
         datos = pd.read_csv(os.path.join(DATA_DIR, CLEAN_FEATURES_FILENAME))
-        y_true = pd.read_csv(os.path.join(DATA_DIR, CLEAN_TARGETS_FILENAME))
-
-    y_true = datos['target'] if 'target' in datos.columns else y_true
-    X_new = datos.drop('target', axis=1)
+        y_true = pd.read_csv(os.path.join(DATA_DIR, CLEAN_TARGETS_FILENAME)).squeeze()
+        X_new = datos
 
     numeric_columns = X_new.select_dtypes(include=np.number).columns.tolist()
     categorical_columns = X_new.select_dtypes(exclude=np.number).columns.tolist()

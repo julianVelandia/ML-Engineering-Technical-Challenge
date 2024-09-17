@@ -33,8 +33,6 @@ def entrenar_modelo():
 
     y_pred = model.predict(X_test)
     report = classification_report(y_test, y_pred, output_dict=True)
-    print("Reporte de clasificación:")
-    print(classification_report(y_test, y_pred))
 
     initial_metrics = {
         'f1_score': f1_score(y_test, y_pred, average='weighted'),
@@ -47,4 +45,3 @@ def entrenar_modelo():
         json.dump(initial_metrics, f)
 
     joblib.dump(model, os.path.join(MODELS_DIR, MODEL_FILENAME))
-    print("Modelo entrenado y guardado exitosamente.")

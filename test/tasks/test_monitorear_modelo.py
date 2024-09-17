@@ -5,7 +5,7 @@ from unittest.mock import patch, MagicMock
 import numpy as np
 import pandas as pd
 
-from config.constants import DATA_DIR, NUEVOS_DATOS_FILENAME, CLEAN_FEATURES_FILENAME
+from config.constants import DATA_DIR, NUEVOS_DATOS_FILENAME, CLEAN_FEATURES_FILENAME, CLEAN_TARGETS_FILENAME
 from tasks.monitorear_modelo import monitorear_modelo
 
 
@@ -60,8 +60,6 @@ class TestMonitorearModelo(unittest.TestCase):
         mock_imputer = MagicMock()
         mock_scaler = MagicMock()
 
-        mock_best_model.predict.return_value = np.array([0, 1, 0])
-
         mock_imputer.transform.return_value = np.array([[1, 2], [3, 4], [5, 6]])
         mock_scaler.transform.return_value = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
 
@@ -69,17 +67,22 @@ class TestMonitorearModelo(unittest.TestCase):
 
         mock_exists.side_effect = [False, True]
 
-        mock_read_csv.return_value = pd.DataFrame({
-            'col1': [1, 2, 3],
-            'col2': [4, 5, 6],
-            'target': [0, 1, 0]
-        })
+        mock_read_csv.side_effect = [
+            pd.DataFrame({
+                'col1': [1, 2, 3],
+                'col2': [4, 5, 6]
+            }),
+            pd.Series([0, 1, 0], name='target')
+        ]
+        mock_best_model.predict.return_value = np.array([0, 1, 0])
 
         mock_load_json.return_value = {'f1_score': 0.95}
 
         monitorear_modelo()
 
         mock_exists.assert_any_call(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME))
+
         mock_read_csv.assert_any_call(os.path.join(DATA_DIR, CLEAN_FEATURES_FILENAME))
+        mock_read_csv.assert_any_call(os.path.join(DATA_DIR, CLEAN_TARGETS_FILENAME))
 
         mock_dump_json.assert_called()
