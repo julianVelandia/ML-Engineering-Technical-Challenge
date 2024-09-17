@@ -11,7 +11,7 @@ El modelo de machine learning es un **RandomForestClassifier** entrenado y ajust
 
 1. **Correr el entorno con Docker**:
    ```bash
-   docker-compose up --build
+   docker-compose down --volumes ; docker-compose up --build
    ```
 
 4. **Acceder a Airflow**:
@@ -29,6 +29,7 @@ El modelo de machine learning es un **RandomForestClassifier** entrenado y ajust
 ### Ejecución del Pipeline
 
 Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està en None
+![image](https://github.com/user-attachments/assets/9a584349-0fac-4e81-9ea4-03039980c83d)
 
 1. **Pipeline de creación del modelo**:
    - Dentro de Airflow, habilitar y ejecutar el DAG `pipeline_creacion_modelo` que incluye:
@@ -38,14 +39,14 @@ Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està
      - Ajustar hiperparámetros
      - Generar Reporte
 
-![image](https://github.com/user-attachments/assets/4bc1955e-ceab-4d32-aaba-3434d7f1754b)
+![image](https://github.com/user-attachments/assets/8f490b4c-ff21-4074-b3c2-dc4cb78e88a9)
 
 2. **Pipeline de monitoreo del modelo**:
    - Habilitar y ejecutar el DAG `pipeline_monitoreo_modelo` para:
      - Monitorear el rendimiento del modelo
      - Reentrenar el modelo si es necesario
     
- 
+ Se deben tener los archivos `nuevos_datos_etiquetados.csv` en la carpeta data, si no, el pipeline corre con los datos anteriores
 ![image](https://github.com/user-attachments/assets/73eb0a03-5bbc-4a72-8397-9430c564430c)
 
 
@@ -66,6 +67,8 @@ El reporte del EDA se encuentra en `reports/`
      - Aplicar el modelo entrenado a los nuevos datos
      - Generar predicciones sobre la probabilidad de incumplimiento de pago de los nuevos clientes
      - Guardar las predicciones generadas en un archivo CSV
+
+ Se deben tener los archivos `nuevos_clientes.csv` en la carpeta data, si no, el pipeline no corre
 
 ### Acceso a los Informes
 
