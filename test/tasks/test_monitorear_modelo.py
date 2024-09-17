@@ -5,7 +5,7 @@ from unittest.mock import patch, MagicMock
 import numpy as np
 import pandas as pd
 
-from config.constants import DATA_DIR, NUEVOS_DATOS_FILENAME, DATOS_ANTERIORES_FILENAME
+from config.constants import DATA_DIR, NUEVOS_DATOS_FILENAME, CLEAN_FEATURES_FILENAME
 from tasks.monitorear_modelo import monitorear_modelo
 
 
@@ -80,6 +80,6 @@ class TestMonitorearModelo(unittest.TestCase):
         monitorear_modelo()
 
         mock_exists.assert_any_call(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME))
-        mock_read_csv.assert_called_with(os.path.join(DATA_DIR, DATOS_ANTERIORES_FILENAME))
+        mock_read_csv.assert_any_call(os.path.join(DATA_DIR, CLEAN_FEATURES_FILENAME))
 
         mock_dump_json.assert_called()

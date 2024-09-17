@@ -8,7 +8,8 @@ from sklearn.metrics import f1_score
 
 from config.constants import MODELS_DIR, DATA_DIR, CURRENT_METRICS_FILENAME, BEST_METRICS_FILENAME, \
     RETRAIN_FLAG_FILENAME, \
-    RANDOM_FOREST_MODEL_FILENAME, IMPUTER_FILENAME, SCALER_FILENAME, NUEVOS_DATOS_FILENAME, DATOS_ANTERIORES_FILENAME
+    RANDOM_FOREST_MODEL_FILENAME, IMPUTER_FILENAME, SCALER_FILENAME, NUEVOS_DATOS_FILENAME, CLEAN_FEATURES_FILENAME, \
+    CLEAN_TARGETS_FILENAME
 
 
 def monitorear_modelo():
@@ -28,15 +29,14 @@ def monitorear_modelo():
     imputer = joblib.load(os.path.join(MODELS_DIR, IMPUTER_FILENAME))
     scaler = joblib.load(os.path.join(MODELS_DIR, SCALER_FILENAME))
 
-    nuevos_datos_path = os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME)
-    if os.path.exists(nuevos_datos_path):
-        datos_path = nuevos_datos_path
+    if os.path.exists(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME)):
+        datos = pd.read_csv(os.path.join(DATA_DIR, NUEVOS_DATOS_FILENAME))
     else:
-        datos_path = os.path.join(DATA_DIR, DATOS_ANTERIORES_FILENAME)
+        datos = pd.read_csv(os.path.join(DATA_DIR, CLEAN_FEATURES_FILENAME))
+        y_true = pd.read_csv(os.path.join(DATA_DIR, CLEAN_TARGETS_FILENAME))
 
-    nuevos_datos_etiquetados = pd.read_csv(datos_path)
-    y_true = nuevos_datos_etiquetados['target']
-    X_new = nuevos_datos_etiquetados.drop('target', axis=1)
+    y_true = datos['target'] if 'target' in datos.columns else y_true
+    X_new = datos.drop('target', axis=1)
 
     numeric_columns = X_new.select_dtypes(include=np.number).columns.tolist()
     categorical_columns = X_new.select_dtypes(exclude=np.number).columns.tolist()
