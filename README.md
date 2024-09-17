@@ -8,6 +8,7 @@ El modelo de machine learning es un **RandomForestClassifier** entrenado y ajust
 ![image](https://github.com/user-attachments/assets/6da007ce-0305-4586-9497-514cffb5c9c7)
 
 Adicionalmentte se plantea un proceso de Anàlisis exploratorio de datos
+
 ![image](https://github.com/user-attachments/assets/4afbb848-8f9a-4049-a374-cfff7a347dee)
 
 
