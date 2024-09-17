@@ -7,6 +7,10 @@ El modelo de machine learning es un **RandomForestClassifier** entrenado y ajust
 
 ![image](https://github.com/user-attachments/assets/6da007ce-0305-4586-9497-514cffb5c9c7)
 
+Adicionalmentte se plantea un proceso de Anàlisis exploratorio de datos
+![image](https://github.com/user-attachments/assets/4afbb848-8f9a-4049-a374-cfff7a347dee)
+
+
 ### Instalación y Configuración
 
 1. **Correr el entorno con Docker**:
@@ -47,6 +51,8 @@ Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està
      - Reentrenar el modelo si es necesario
     
  Se deben tener los archivos `nuevos_datos_etiquetados.csv` en la carpeta data, si no, el pipeline corre con los datos anteriores
+ ![image](https://github.com/user-attachments/assets/4dcb205e-da16-4078-8eb4-10daf9c82b0d)
+
 ![image](https://github.com/user-attachments/assets/73eb0a03-5bbc-4a72-8397-9430c564430c)
 
 
