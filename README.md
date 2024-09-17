@@ -45,7 +45,7 @@ Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està
      - Monitorear el rendimiento del modelo
      - Reentrenar el modelo si es necesario
     
-Las mètricas que el modelo selecciona como las mejores son estas: 
+ 
 ![image](https://github.com/user-attachments/assets/73eb0a03-5bbc-4a72-8397-9430c564430c)
 
 
