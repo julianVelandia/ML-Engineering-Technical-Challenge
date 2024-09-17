@@ -5,7 +5,7 @@ Este proyecto implementa un pipeline de procesamiento de datos y entrenamiento d
 Utiliza **Airflow** para orquestar los pipelines y **Docker** para contenerizar los servicios.
 El modelo de machine learning es un **RandomForestClassifier** entrenado y ajustado utilizando [datos de clientes de tarjetas de crédito](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients).
 
-![image](https://github.com/user-attachments/assets/2aa1caa9-32e2-44e7-835b-d4ccfc0a1bc4)
+![image](https://github.com/user-attachments/assets/6da007ce-0305-4586-9497-514cffb5c9c7)
 
 ### Instalación y Configuración
 
@@ -29,10 +29,6 @@ El modelo de machine learning es un **RandomForestClassifier** entrenado y ajust
 ### Ejecución del Pipeline
 
 Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està en None
-
-![image](https://github.com/user-attachments/assets/6da007ce-0305-4586-9497-514cffb5c9c7)
-
-
 
 1. **Pipeline de creación del modelo**:
    - Dentro de Airflow, habilitar y ejecutar el DAG `pipeline_creacion_modelo` que incluye:
