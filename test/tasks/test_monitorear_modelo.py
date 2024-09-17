@@ -59,10 +59,14 @@ class TestMonitorearModelo(unittest.TestCase):
         mock_best_model = MagicMock()
         mock_imputer = MagicMock()
         mock_scaler = MagicMock()
+
+        mock_best_model.predict.return_value = np.array([0, 1, 0])
+
         mock_imputer.transform.return_value = np.array([[1, 2], [3, 4], [5, 6]])
-        mock_scaler.transform.return_value = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])  # Simular salida correcta
+        mock_scaler.transform.return_value = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]])
 
         mock_joblib_load.side_effect = [mock_best_model, mock_imputer, mock_scaler]
+
         mock_exists.side_effect = [False, True]
 
         mock_read_csv.return_value = pd.DataFrame({
