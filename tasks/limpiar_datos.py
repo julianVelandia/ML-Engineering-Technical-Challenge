@@ -21,6 +21,8 @@ def limpiar_datos():
     4. Escala las columnas numéricas utilizando StandardScaler.
     5. Guarda los datos limpiados y los modelos de imputación y escalado.
     """
+    os.makedirs(MODELS_DIR, exist_ok=True)
+
     X = pd.read_csv(os.path.join(DATA_DIR, FEATURES_FILENAME))
     y = pd.read_csv(os.path.join(DATA_DIR, TARGETS_FILENAME))
 

@@ -14,6 +14,8 @@ services:
       - ./plugins:/opt/airflow/plugins
       - ./reports:/opt/airflow/reports
       - ./config:/opt/airflow/config
+      - ./data:/opt/airflow/data
+      - ./models:/opt/airflow/models
     ports:
       - "8080:8080"
     command: bash -c "
