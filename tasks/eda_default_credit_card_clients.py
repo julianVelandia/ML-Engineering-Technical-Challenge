@@ -2,8 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
-from config.constants import DATA_DIR, FEATURES_FILENAME, REPORTS_DIR
-from config.constants import EDA_FILE
+from config.constants import DATA_DIR, FEATURES_FILENAME, REPORTS_DIR, EDA_FILE
 
 
 def generar_eda():
@@ -11,16 +10,13 @@ def generar_eda():
     Genera un análisis exploratorio de datos (EDA) a partir de los datos cargados en el sistema.
     El EDA incluye estadísticas descriptivas y visualizaciones clave, las cuales se guardan en
     formato markdown (.md) y como imágenes (.png) dentro de un directorio específico de reportes.
-
-    Proceso:
-        - Carga los datos desde los archivos CSV de características.
-        - Genera estadísticas descriptivas y visualizaciones de las variables.
-        - Guarda el análisis en un archivo .md y las visualizaciones en formato .png.
     """
     features_path = os.path.join(DATA_DIR, FEATURES_FILENAME)
+    print(f"Cargando datos desde: {features_path}")
     df = pd.read_csv(features_path)
 
     os.makedirs(REPORTS_DIR, exist_ok=True)
+    print(f"Guardando reportes en: {REPORTS_DIR}")
 
     with open(EDA_FILE, 'w', encoding='utf-8') as f:
         f.write("# Análisis Exploratorio de Datos (EDA)\n")
@@ -48,6 +44,7 @@ def generar_eda():
             plt.title('Distribución de Default Payment Next Month')
             plot_path = os.path.join(REPORTS_DIR, 'default_payment_distribution.png')
             plt.savefig(plot_path)
+            print(f"Guardando gráfico en: {plot_path}")
             plt.close()
             f.write(f"![Distribución de Default Payment Next Month]({plot_path})\n\n")
 
@@ -56,6 +53,7 @@ def generar_eda():
         sns.heatmap(corr, annot=True, fmt='.2f', cmap='coolwarm')
         plot_path = os.path.join(REPORTS_DIR, 'correlation_matrix.png')
         plt.savefig(plot_path)
+        print(f"Guardando gráfico en: {plot_path}")
         plt.close()
         f.write(f"![Matriz de Correlación]({plot_path})\n\n")
 
@@ -68,6 +66,6 @@ def generar_eda():
                 plt.title(f'Distribución de {var}')
                 plot_path = os.path.join(REPORTS_DIR, f'{var}_distribution.png')
                 plt.savefig(plot_path)
+                print(f"Guardando gráfico en: {plot_path}")
                 plt.close()
                 f.write(f"![Distribución de {var}]({plot_path})\n\n")
-

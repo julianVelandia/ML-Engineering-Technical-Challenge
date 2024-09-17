@@ -21,8 +21,8 @@ orquestación y **RandomForest** como algoritmo principal de clasificación.
           sin interferir en las predicciones diarias de nuevos datos.
 
 El diseño propuesto es el siguiente:
-![design.png](design.png)
 
+![image](https://github.com/user-attachments/assets/2aa1caa9-32e2-44e7-835b-d4ccfc0a1bc4)
 
 
 2. **RandomForest como Algoritmo**
