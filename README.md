@@ -34,6 +34,7 @@ Adicionalmentte se plantea un proceso de Anàlisis exploratorio de datos
 ### Ejecución del Pipeline
 
 Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està en None
+
 ![image](https://github.com/user-attachments/assets/9a584349-0fac-4e81-9ea4-03039980c83d)
 
 1. **Pipeline de creación del modelo**:
@@ -52,7 +53,8 @@ Se deben disparar los Pipelines manualmente, ya que el paràmetro schedule està
      - Reentrenar el modelo si es necesario
     
  Se deben tener los archivos `nuevos_datos_etiquetados.csv` en la carpeta data, si no, el pipeline corre con los datos anteriores
- ![image](https://github.com/user-attachments/assets/4dcb205e-da16-4078-8eb4-10daf9c82b0d)
+![image](https://github.com/user-attachments/assets/d7d50325-20e8-4843-b8e7-70c5a8c2b385)
+
 
 ![image](https://github.com/user-attachments/assets/73eb0a03-5bbc-4a72-8397-9430c564430c)
 
