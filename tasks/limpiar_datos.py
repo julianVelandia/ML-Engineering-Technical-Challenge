@@ -24,8 +24,6 @@ def limpiar_datos():
     X = pd.read_csv(os.path.join(DATA_DIR, FEATURES_FILENAME))
     y = pd.read_csv(os.path.join(DATA_DIR, TARGETS_FILENAME))
 
-    print("Datos cargados para limpieza.")
-
     numeric_columns = X.select_dtypes(include=np.number).columns.tolist()
     categorical_columns = X.select_dtypes(exclude=np.number).columns.tolist()
 
@@ -49,5 +47,3 @@ def limpiar_datos():
     y_clean.to_csv(os.path.join(DATA_DIR, CLEAN_TARGETS_FILENAME), index=False)
     joblib.dump(imputer, os.path.join(MODELS_DIR, IMPUTER_FILENAME))
     joblib.dump(scaler, os.path.join(MODELS_DIR, SCALER_FILENAME))
-
-    print("Datos limpiados y guardados exitosamente.")
