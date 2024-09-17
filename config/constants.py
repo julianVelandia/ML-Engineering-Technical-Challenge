@@ -1,6 +1,6 @@
 import os
 
-BASE_DIR = '/opt/airflow/dags'
+BASE_DIR = '/opt/airflow'
 
 UCIREPO_DATASET_ID_CREDIT_CARD_CLIENTS = 350
 FEATURES_FILENAME = 'credit_card_clients_features.csv'

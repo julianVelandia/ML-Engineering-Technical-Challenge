@@ -12,7 +12,8 @@ services:
       - ./tasks:/opt/airflow/tasks
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ./reports:/opt/airflow/dags/reports
+      - ./reports:/opt/airflow/reports
+      - ./config:/opt/airflow/config
     ports:
       - "8080:8080"
     command: bash -c "

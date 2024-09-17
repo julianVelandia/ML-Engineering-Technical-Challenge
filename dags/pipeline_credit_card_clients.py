@@ -10,14 +10,12 @@ from tasks.entrenar_modelo import entrenar_modelo
 from tasks.generar_informes import generar_informes
 from tasks.limpiar_datos import limpiar_datos
 
-default_args = {
-    'start_date': datetime(2023, 1, 1),
-    'retries': 1
-}
+
 
 with DAG('pipeline_credit_card_clients',
-         default_args=default_args,
-         schedule_interval='@daily',
+         default_args={'retries': 1},
+         schedule_interval=None,
+         start_date=datetime(2025, 1, 1),
          catchup=False) as dag:
     dataset_id = UCIREPO_DATASET_ID_CREDIT_CARD_CLIENTS
 

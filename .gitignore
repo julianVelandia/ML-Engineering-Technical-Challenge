@@ -4,7 +4,7 @@ test/tasks/.pytest_cache/
 
 /logs/
 
-dags/data/
+data/
 
 .pytest_cache
 

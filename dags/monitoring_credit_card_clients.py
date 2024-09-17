@@ -8,9 +8,8 @@ from tasks.reentrenar_modelo import reentrenar_modelo
 
 with DAG('monitoring_credit_card_clients',
          default_args={'retries': 1},
-         description='DAG para monitorear y reentrenar el modelo de clientes de tarjetas de crédito',
-         schedule_interval='@daily',
-         start_date=datetime(2024, 1, 1),
+         schedule_interval=None,
+         start_date=datetime(2025, 1, 1),
          catchup=False) as dag:
     monitorear_rendimiento_task = PythonOperator(
         task_id='monitorear_rendimiento',
