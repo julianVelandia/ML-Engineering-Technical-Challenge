@@ -31,3 +31,5 @@ DATOS_ANTERIORES_FILENAME = 'datos_anteriores_etiquetados.csv'
 CURRENT_METRICS_FILENAME = 'current_metrics.json'
 RETRAIN_FLAG_FILENAME = 'retrain_flag.txt'
 
+NUEVOS_CLIENTES_FILENAME = os.path.join(DATA_DIR, 'nuevos_clientes.csv')
+NUEVOS_CLIENTES_PREDICCION_FILENAME = os.path.join(DATA_DIR, 'nuevos_clientes_con_prediccion.csv')
