@@ -3,7 +3,6 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-from config.constants import DATA_DIR, RETRAIN_FLAG_FILENAME, NUEVOS_DATOS_FILENAME
 from tasks.monitorear_modelo import monitorear_modelo
 from tasks.reentrenar_modelo import reentrenar_modelo
 
